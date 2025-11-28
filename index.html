@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIAS Presentation</title>
+    <link rel="shortcut icon" href="/img/ourslogo.png" type="image/x-icon">
+    <style>
+
+    </style>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<!-- LOADING SCREEN -->
+<div id="preloader">
+    <div class="loader"></div>
+    <p>Loading...</p>
+</div>
+
+<!-- HALAMAN UTAMA -->
+<div class="page-content hidden">
+
+    <body>
+        <div id="scroll-progress"></div>
+
+
+        <header class="main-header">
+            <div class="container">
+                <div class="logo-container" style="display: flex;flex-direction: row;">
+                    <img src="/img/ourslogo.png" alt="" width="70px">
+                    <a href="#" class="logo">Haidar Idris Asy-Syafiq</a>
+                </div>
+
+
+                <nav id="navbar" class="main-nav">
+                    <ul>
+                        <li><a href="#Home">Home</a></li>
+                        <li><a href="#About">About Me</a></li>
+                        <li><a href="#Biography">My Biography</a></li>
+                        <li><a href="#Story">My Kisah</a></li>
+                        <li><a href="#Project">My Project</a></li>
+                        <li><a href="#lesson">My lesson</a></li>
+                        <li><a href="#Contact">My Contact</a></li>
+                        <li><a href="#Visitor">Visitor Book</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <section class="Beranda" id="Home" style="display: flex;flex-direction: row;justify-content: space-around;">
+
+            <audio id="audio" src="/img/La la tahsab.m4a" loop></audio>
+
+            <!-- MICROPHONE ICON -->
+            <div class="centerBox">
+                <div id="micBtn"><img class="sound" src="/img/volume_945174.png" width="200px" alt=""
+                        style="transition: 1s opacity ease ease-in-out;"></div>
+                <canvas id="canvas" style="width: 200px;
+           height: 200px;
+           display: none;
+           margin-top: 20px;
+           border-radius: 100%;
+           box-shadow: 0 0 50px yellow;"></canvas>
+            </div>
+        </section>
+
+        <style>
+            .sound:checked {
+                opacity: initial;
+            }
+        </style>
+
+        <main class="main">
+            <section class="hero-section reserve" id="About">
+                <img class="card1" width="170px" src="/img/foto idris.jpeg" alt="">
+                <div class="hero-text">
+                    <h1>Calon Web Developer & Tech
+                        Enthusiast</h1>
+                    <p>Halo! Saya Haidar Idris Asy-Syafiq, seorang siswa SMA yang bersemangat
+                        dalam pembelajaran IT terutama coding dan design. Selamat datang di
+                        ruang digital saya! tetap ikuti saya Ya!!! </p>
+                    <a href="#gallery"><button class="opus">Lihat
+                            Karya Saya</button></a>
+                </div>
+            </section>
+            <hr>
+            <section class="hero-section" id="Biography">
+                <img class="card1" width="180px" src="/img/ourslogo.png" alt="">
+                <div class="hero-text">
+                    <h1>My Biography</h1>
+                    <p>Halo! Saya Haidar Idris Asy-Syafiq, berasal dari sukoharjo,
+                        Jawa Tengah, Indonesia. Umur Saya 17 tahun sekarang. dan saya bersekolah di SMA IT HSI IDN
+                        Boarding
+                        School.
+                        Saya seorang desainer grafis sekaligus
+                        programmer yang masih belajar.
+                    </p>
+                </div>
+            </section>
+
+
+
+            <hr>
+
+            <section class="hero-section" id="Story">
+                <img class="card1" src="/img/wmremove-transformed.webp" alt="" width="150px">
+                <div class="hero-text">
+                    <h1>My Story</h1>
+                    <p> Sejak kecil saya teringin membuat artikel dan saya selama liburan
+                        kemarin berusaha gimana caranya agar peham betul tentang
+                        dunia coding. Akhirnya saya sekarang bisa belajar programming dengan lancar seperti saat ini.
+                        Dan saat ini, saya fokus mendalami pengembangan web, mulai
+                        dari membuat tampilan yang menarik buat saya dan orang lain (frontend)
+                        hingga membangun logika di
+                        baliknya (backend).
+                        Di luar coding, <strong>saya suka menulis</strong> dan
+                        <strong>Menggambar</strong>. Saya percaya bahwa kreativitas
+                        dari hobi bisa memberikan inspirasi baru dalam membuat proyek teknologi
+                    </p>
+                </div>
+            </section>
+            <hr>
+            <section id="project">
+                <div class="container" id="Project"
+                    style="display: flex;flex-direction: column;align-items: center;justify-content: center;gap: 80px;">
+                    <h2>Project Gallery</h2>
+                    <p class="subtitle" style="margin-top: 10px;">
+                        Berikut adalah beberapa project yang telah saya kerjakan
+                    </p>
+
+                    <!-- Area untuk menampilkan project -->
+                    <div id="gallery" class="gallery" style="display: flex;flex-wrap: nowrap;justify-content: center;">
+                        <!-- Project cards akan ditambahkan di sini oleh JavaScript -->
+
+                    </div>
+                </div>
+            </section>
+
+            <script>
+
+            </script>
+            <br><br>
+            <hr>
+
+
+
+            <!-- STYLING GALLERY LESSON AREA -->
+            <style>
+
+            </style>
+
+            <section class="hero-section-lesson" style="display: flex;flex-direction: column;" id="lesson">
+                <div class="area-ketik" id="ketik"></div>
+                <script>
+                    const teks = ["This Is Ours Lesson,Let's See!!"];
+                    let i = 0;          // index teks
+                    let j = 0;          // index huruf
+                    let hapus = false;  // mode hapus atau ketik
+
+                    function animasiKetik() {
+                        const area = document.getElementById("ketik");
+                        const kata = teks[i];
+
+                        if (!hapus) {
+                            // mode mengetik
+                            area.textContent = kata.slice(0, j++);
+                            if (j > kata.length) {
+                                hapus = true;
+                                setTimeout(animasiKetik, 800); // jeda sebelum menghapus
+                                return;
+                            }
+                        } else {
+                            // mode menghapus
+                            area.textContent = kata.slice(0, j--);
+                            if (j < 0) {
+                                hapus = false;
+                                i = (i + 1) % teks.length; // pindah kata berikutnya
+                            }
+                        }
+
+                        setTimeout(animasiKetik, hapus ? 50 : 80); // kecepatan
+                    }
+
+                    animasiKetik();
+                </script>
+                <div class="carousel-lesson">
+                    <div aria-hidden="true" class="group">
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/Arabic.jpg" alt="">
+                            <h4 class="judulku">Arabic Languange</h4>
+                            <p>We study it because that's Al-Quran Languange</p>
+                        </div>
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/Figma.jpg" alt="">
+                            <h4 class="judulku">Designing at Figma</h4>
+                            <p>Because draw skill must improve from childhood</p>
+                        </div>
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/JS.jpg" alt="">
+                            <h4 class="judulku">Javascript</h4>
+                            <p>Because it's international programming languange. And this is machine from HTML CSS</p>
+                        </div>
+
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/HTML.jpg" alt="">
+                            <h4 class="judulku">HTML</h4>
+                            <p>It's your website framework and you must make it funny,after that you need CSS and
+                                Javascript
+                            </p>
+                        </div>
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/css.jpg" alt="">
+                            <h4 class="judulku">CSS</h4>
+                            <p>You must study it because no programmer without arts. and design your html quickly
+                                beautifully.
+                                And this is art of HTML</p>
+                        </div>
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/Photography.jpg" alt="">
+                            <h4 class="judulku">Photography</h4>
+                            <p>To take yours moment and yours memory beautifully and Elegant</p>
+                        </div>
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/canva2.jpg" alt="">
+                            <h4 class="judulku">Canva</h4>
+                            <p>In canva,we can make ours design simply</p>
+                        </div>
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/Capcut.jpg" alt="">
+                            <h4 class="judulku">Editing video on Capcut App</h4>
+                            <p>Because company need persons videos editor</p>
+                        </div>
+                    </div>
+
+
+                    <div aria-hidden="true" class="group">
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/Arabic.jpg" alt="">
+                            <h4 class="judulku">Arabic Languange</h4>
+                            <p>We study it because that's Al-Quran Languange</p>
+                        </div>
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/Figma.jpg" alt="">
+                            <h4 class="judulku">Designing at Figma</h4>
+                            <p>Because draw skill must improve from childhood</p>
+                        </div>
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/JS.jpg" alt="">
+                            <h4 class="judulku">Javascript</h4>
+                            <p>Because it's international programming languange. And this is machine from HTML CSS</p>
+                        </div>
+
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/HTML.jpg" alt="">
+                            <h4 class="judulku">HTML</h4>
+                            <p>It's your website framework and you must make it funny,after that you need CSS and
+                                Javascript
+                            </p>
+                        </div>
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/css.jpg" alt="">
+                            <h4 class="judulku">CSS</h4>
+                            <p>You must study it because no programmer without arts. and design your html quickly
+                                beautifully.
+                                And this is art of HTML</p>
+                        </div>
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/Photography.jpg" alt="">
+                            <h4 class="judulku">Photography</h4>
+                            <p>To take yours moment and yours memory beautifully and Elegant</p>
+                        </div>
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/canva2.jpg" alt="">
+                            <h4 class="judulku">Canva</h4>
+                            <p>In canva,we can make ours design simply</p>
+                        </div>
+                        <div class="card-img-lesson">
+                            <img class="imgstud" src="/img/Capcut.jpg" alt="">
+                            <h4 class="judulku">Editing video on Capcut App</h4>
+                            <p>Because company need persons videos editor</p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+        </main>
+
+        <div class="carousel-lesson">
+            <div aria-hidden="true" class="group1">
+                <div class="card-quotes"
+                    style="background-color: darkslategray;padding: 20px;border-radius: 20px;width: 450px;">
+                    <blockquote>
+                        <p
+                            style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 200;text-align: center;margin: 30px ;color: aliceblue;">
+                            “Your time
+                            is limited, so don’t waste it living someone else’s life.”</p>
+                        <br>
+                        <p style="text-align: center;color: aliceblue;">Waktumu terbatas, jadi jangan menyia-nyiakannya
+                            dengan hidup sesuai keinginan orang lain.</p>
+
+                    </blockquote>
+                </div>
+                <div class="card-quotes"
+                    style="background-color: darkslategray;padding: 20px;border-radius: 20px;width: 450px;">
+                    <blockquote>
+                        <p
+                            style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 200;text-align: center;margin: 30px ;color: aliceblue;">
+                            “Your time
+                            is limited, so don’t waste it living someone else’s life.”</p>
+                        <br>
+                        <p style="text-align: center;color: aliceblue;">Waktumu terbatas, jadi jangan menyia-nyiakannya
+                            dengan hidup sesuai keinginan orang lain.</p>
+
+                    </blockquote>
+                </div>
+            </div>
+            <div aria-hidden="true" class="group1">
+                <div class="card-quotes"
+                    style="background-color: darkslategray;padding: 20px;border-radius: 20px;width: 450px;">
+                    <blockquote>
+                        <p
+                            style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 200;text-align: center;margin: 30px ;color: aliceblue;">
+                            “Your time
+                            is limited, so don’t waste it living someone else’s life.”</p>
+                        <br>
+                        <p style="text-align: center;color: aliceblue;">Waktumu terbatas, jadi jangan menyia-nyiakannya
+                            dengan hidup sesuai keinginan orang lain.</p>
+
+                    </blockquote>
+                </div>
+                <div class="card-quotes"
+                    style="background-color: darkslategray;padding: 20px;border-radius: 20px;width: 450px;">
+                    <blockquote>
+                        <p
+                            style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 200;text-align: center;margin: 30px ;color: aliceblue;">
+                            “Your time
+                            is limited, so don’t waste it living someone else’s life.”</p>
+                        <br>
+                        <p style="text-align: center;color: aliceblue;">Waktumu terbatas, jadi jangan menyia-nyiakannya
+                            dengan hidup sesuai keinginan orang lain.</p>
+
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        <div class="column" style="display: flex;flex-direction: row;">
+            <button class="center">
+                <a href="/index2.html" class="btn link" style="text-decoration: none;color: aliceblue;">Ke Halaman 2</a>
+            </button>
+
+
+
+            <button class="center">
+                <a href="/index3.html" class="btn link" style="text-decoration: none;color: aliceblue;">Ke Halaman 3</a>
+            </button>
+
+        </div>
+
+        <div class="cursor"></div>
+
+
+        <section style="display: flex;flex-direction: column;">
+            <img src="/img/ourslogo.png" alt="" width="220px"
+                style="border-radius: 100%;box-shadow: 2px 2px 40px aliceblue;">
+            <h1>BERDIRINYA KAMI PADA</h1>
+            <div class="numbera"
+                style="display: flex;flex-direction: row;margin: 20px; justify-content: space-between;">
+                <div class="counter-box">
+                    <div class="counter" data-target="2025">0</div>
+                    <div class="label">Berdiri pada tahun</div>
+                </div>
+
+                <div class="counter-box">
+                    <div class="counter" data-target="28">0</div>
+                    <div class="label">Pada Tanggal</div>
+                </div>
+
+                <div class="counter-box">
+                    <div class="counter" data-target="11">0</div>
+                    <div class="label">Pada Bulan</div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <style>
+
+        </style>
+
+
+
+
+        <section class="hero-section" id="Contact">
+            <div class="hero-text">
+                <h1>This Ours Contact</h1>
+                <p>kalau anda punya pertanyaan untuk kami atau saran atau ajuan jangan pernah ragu untuk mengirimkannya
+                    ke
+                    email ini</p>
+                <div class="grupm">
+                    <div class="mediana">
+                        <div class="mediac">
+                            <a href="https://www.instagram.com/idris_sifqa/?igsh=MW14eDdkMnMyMnV6dA%3D%3D#"
+                                target="_blank" rel="noopener noreferrer"><img
+                                    src="/img//imgcompon/instagram_4782335.png" alt="" class="sosmed">
+                                <a
+                                    href="https://www.instagram.com/idris_sifqa/?igsh=MW14eDdkMnMyMnV6dA%3D%3D#">Instagram</a>
+                            </a>
+                        </div>
+                        <div class="mediac">
+                            <a href="https://www.facebook.com/profile.php?id=61568714111531" target="_blank"
+                                rel="noopener noreferrer"><img src="/img/imgcompon/fb.png" alt="" class="sosmed">
+                                <a href="https://www.facebook.com/profile.php?id=61568714111531">Facebook</a>
+                            </a>
+                        </div>
+                        <div class="mediac">
+                            <a href="mailto:punyadrs@gmail.com." target="_blank" rel="noopener noreferrer"><img
+                                    src="/img/imgcompon/gmail_270021.png" alt="" class="sosmed">
+                                <a href="mailto:punyadrs@gmail.com">Ours Gmail</a>
+                            </a>
+                        </div>
+                                                <div class="mediac">
+                            <a href="mailto:punyadrs@gmail.com." target="_blank" rel="noopener noreferrer"><img
+                                    src="/img/imgcompon/linkedin_1377213.png" alt="" class="sosmed">
+                                <a href="https://www.linkedin.com/in/punya-idris-87715b391/">LinkedIn</a>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mediana">
+                        <div class="mediac">
+                            <a href="https://www.tiktok.com/@sifqa3" target="_blank" rel="noopener noreferrer"><img
+                                    src="/img/imgcompon/tiktok.png" alt="" class="sosmed">
+                                <a href="https://www.tiktok.com/@sifqa3">Tiktok</a>
+                            </a>
+                        </div>
+                        <div class="mediana">
+                            <div class="mediac">
+                                <a href="https://www.tiktok.com/@sifqa3" target="_blank" rel="noopener noreferrer"><img
+                                        src="/img/imgcompon/youtube.png" alt="" class="sosmed">
+                                    <a href="https:youtube.com/channel/UCYUhdT5LK-cqbgRrZ_MTImw">Youtube</a>
+                                </a>
+                            </div>
+                            <div class="mediac">
+                                <a href="https://t.me/@idrissifqa" target="_blank" rel="noopener noreferrer"><img
+                                        src="/img/imgcompon/telegram.png" alt="" class="sosmed">
+                                    <a href="https://t.me/@idrissifqa">Telegram</a>
+                                </a>
+                            </div>
+                            <div class="mediac">
+                                <a href="https://github.com/Idorisu-HIAS-dev" target="_blank"
+                                    rel="noopener noreferrer"><img src="/img/imgcompon/github_2504911.png" alt=""
+                                        class="sosmed">
+                                    <a href="https://github.com/Idorisu-HIAS-dev">Github</a>
+                                </a>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </section>
+        <section id="Visitor" class="hero-section"
+            style="display: flex;flex-direction: column;align-items: center;justify-content: center;gap: 20px;">
+            <h1>Our Location</h1>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d188.2842718858195!2d110.88012587902922!3d-7.582025251013527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sid!2sid!4v1764248376508!5m2!1sid!2sid"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+<style>
+            .form-visitor {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                width: 400px;
+                margin-bottom: 20px;
+            }
+
+            .form-visitor fieldset {
+                border: none;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .form-visitor label {
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+
+            .form-visitor input,
+            .form-visitor textarea,
+            .form-visitor select {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+
+            .form-visitor textarea {
+                resize: vertical;
+                height: 100px;
+            }
+
+</style>
+            <form action="/proses.php" method="post" class="form-visitor">
+                <fieldset>
+                    <label for="nama">Nama</label>
+                    <input type="text" name="nama" id="nama">
+                </fieldset>
+                <fieldset>
+                    <label for="pesan">Pesan</label>
+                    <textarea type="text" name="pesan" id="pesan"></textarea>
+                </fieldset>
+                <fieldset>
+                    <label for="kota">Kota</label>
+                    <select name="kota" id="kota">
+                        <option value="jakarta">Jakarta</option>
+                        <option value="bandung">Bandung</option>
+                        <option value="surabaya">Surabaya</option>
+                        <option value="Solo">Solo</option>
+                        <option value="Madiun">Madiun</option>
+                        <option value="Sukabumi">Sukabumi</option>
+                        <option value="Bekasi">Bekasi</option>
+                        <option value="Yogyakarta">Yogyakarta</option>
+                        <option value="Lainnya">Lainnya</option>
+
+                    </select>
+                </fieldset>
+            </form>
+            <button class="center" style="margin-bottom: 30px;">
+                <a href="#" class="btn link" style="text-decoration: none;color: aliceblue;padding: 10px 20px;">Kirim Pesan</a>
+        </section>
+        <footer style="padding: 30px;text-align: center;background-color: rgb(66, 66, 66);color: azure;">
+            <p>&copy;2025 Portfolio Haidar Idris Asy-Syafiq All Reserved</p>
+        </footer>
+        <script src="/script.js"></script>
+
+
+</div>
+
+</body>
+
+</html>
