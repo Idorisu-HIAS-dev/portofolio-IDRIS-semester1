@@ -5,7 +5,7 @@ const projectsLagi = [
     title: "Kalkulator Zakat Emas",
     description:
       "Aplikasi Web untuk menghitung zakat emas dengan fitur riwayat penyimpanan menggunakan localStorage.kalau mau infaq emas gak usah tanya bank,takut ilang",
-    image: "/img/goldzakat.png",
+    image: "/goldzakat.png",
     tags: ["HTML", "CSS", "JavaScript"],
     link: "https://idorisu-hias-dev.github.io/Kalkulator-zakat-emas_Idorisu/",
   },
@@ -13,7 +13,7 @@ const projectsLagi = [
     title: "Lampu Merah",
     description:
       "Simulasi Lampu merah,Cocok untuk permainan Anak-anak TK Maupun SD.Sangat mengedukasi buat anak-anak.cobalah!!!Anak anda pasti akan sangat suka 👍",
-    image: "/img/lalin.png",
+    image: "/lalin.png",
     tags: ["HTML", "CSS", "JavaScript"],
     link: " https://idorisu-hias-dev.github.io/Lampu-lalin_idorisu/",
   },
@@ -21,7 +21,7 @@ const projectsLagi = [
     title: "Kalkulator",
     description:
       "Membuat kalkulator sederhana, Yang bisa membuat anda cepat menghitung dan cermat dalam perhitungan anda.Dijamin Anda akan pintar habis pakai kalkulator ini",
-    image: "/img/kalkulatorku.png",
+    image: "/kalkulatorku.png",
     tags: ["HTML", "CSS", "JavaScript"],
     link: " https://idorisu-hias-dev.github.io/Projek-kalkulator-idorisu/",
   },
@@ -29,7 +29,7 @@ const projectsLagi = [
     title: "My Presentation",
     description:
       "Ini adalah presentasi saya yg sebagiannya hanya pratinjau saja.karena aslinya emang disini. Makanya jgn ragu utk menghubungi kami utk presentasi ini",
-    image: "/img/presentqu.png",
+    image: "/presentqu.png",
     tags: ["Canva"],
     link: " https://yukihanapresentation.my.canva.site/haidar-idris-asy-syafiq",
   },
@@ -37,7 +37,7 @@ const projectsLagi = [
     title: "My Channel",
     description:
       "Ini adalah channel youtube saya yg berisi vlog keseharian saya.silahkan kunjungi dan subscribe yaa",
-    image: "/img/idris sifqa studio.png",
+    image: "/idris sifqa studio.png",
     tags: ["Youtube"],
     link: " youtube.com/channel/UCYUhdT5LK-cqbgRrZ_MTImw",
   },
