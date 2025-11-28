@@ -7,7 +7,703 @@
     <title>HIAS Presentation</title>
     <link rel="shortcut icon" href="/ourslogo.png" type="image/x-icon">
     <style>
+        body {
+            background-image: url('modedarkbg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            min-height: 100vh;
+            margin: 0 auto;
+            opacity: 250;
 
+            /* cursor: none; */
+            /* sembunyikan kursor default */
+        }
+
+        /* Hilangkan kursor default */
+        body {
+            /* cursor: none; */
+
+            color: white;
+            font-family: Arial, sans-serif;
+            /* padding: 40px; */
+            padding: 0;
+        }
+
+        /* Lingkaran kursor */
+        .cursor {
+            width: 40px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s ease, height 0.2s ease,
+                background-color 0.2s ease, border 0.2s ease;
+            z-index: 9999;
+        }
+
+        /* Hover target: link & button */
+        a,
+        button {
+            margin-top: 20px;
+            font-size: 20px;
+            display: inline-block;
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #333;
+            border: none;
+            /* cursor: none; */
+            /* biar kursor default tetap hilang */
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* //STYLING LOADER */
+
+
+        /* PRELOADER */
+        /* ===================== */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white;
+        }
+
+        #preloader p {
+            margin-top: 120px;
+            font-size: 1.3rem;
+        }
+
+        .loader {
+            height: 60px;
+            width: 60px;
+            border: 6px solid aqua;
+            border-radius: 4px;
+            animation: loading 1.5s ease-in-out infinite;
+        }
+
+
+
+        /* Fade effect */
+        .page-content {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .page-content.show {
+            opacity: 1;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* \\STYLING HEADER */
+        .main-header {
+            background-color: rgb(253, 253, 255, 0, 3);
+            backdrop-filter: blur(10px);
+            padding: 15px 21px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid wheat;
+            border-radius: 0 0 20px 20px;
+            margin: 0 0;
+            box-shadow: 0 2px 10px rgb(255, 255, 0);
+        }
+
+        section {
+            height: 100vh;
+            scroll-snap-align: start;
+
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        .logo {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 24px;
+            color: white;
+            transition: ease-in-out 3s;
+        }
+
+        .logo:hover {
+            color: black;
+            text-shadow: -2px -2px 0 yellow,
+                2px -2px 0 yellow,
+                -2px 2px 0 yellow,
+                2px 2px 0 yellow,
+                0 0 50px yellow;
+
+            ;
+        }
+
+        .logo.dark {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 24px;
+            color: white;
+            transition: ease-in-out 3s;
+        }
+
+        .logo.dark:hover {
+            color: black;
+            text-shadow: -2px -2px 0 cyan,
+                2px -2px 0 cyan,
+                -2px 2px 0 cyan,
+                2px 2px 0 cyan,
+                0 0 50px cyan;
+
+            ;
+        }
+
+        /* Navigasi */
+        .main-nav ul {
+            text-decoration: none;
+            display: flex;
+            gap: 20px;
+            list-style: none;
+
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: rgb(235, 235, 235);
+            padding: 4px;
+            font-size: 16px;
+
+        }
+
+        .main-nav a:hover {
+            color: skyblue;
+            border-bottom: 1px solid yellow;
+            transition: 1s ease-in-out;
+            /* width: 5px;
+    height: 10px; */
+            /* border-radius: 12px; */
+        }
+
+        /* styling button */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0, 3s ease-in-out, background-color 0, 3s ease-in-out;
+        }
+
+        a.btn-nav {
+            background-color: blue;
+            color: seashell;
+            transition: all 0, 3 ease-in-out;
+            border-radius: 6px;
+        }
+
+        a.btn-nav:hover {
+            color: ghostwhite;
+            background-color: darkblue;
+
+
+        }
+
+        .btn-primary {
+            background-color: blue;
+            color: aliceblue;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-secondary {
+            background-color: gray;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+
+        }
+
+        .btn-secondary:hover {
+            transform: scale(1.05);
+        }
+
+        /* \\STYLING SECTION */
+
+        section {
+            margin: 20px auto;
+            border-radius: 20px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            padding: 20px;
+            max-width: 900px;
+        }
+
+        section.reserve {
+            margin: 20px auto;
+            border-radius: 20px;
+
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: space-around;
+            padding: 20px;
+            max-width: 900px;
+        }
+
+        .hero-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .opus {
+            padding: 20px;
+            background-color: rgb(63, 120, 244);
+            color: aliceblue;
+            border-radius: 20px;
+            border: 1px solid white;
+            cursor: pointer;
+        }
+
+        .opus:hover {
+            animation: name duration timing-function delay iteration-count direction fill-mode;
+            animation: spinnerku 1ms ease-in-out 1ms infinite normal both;
+        }
+
+
+
+        .hero-section {
+            color: aliceblue;
+        }
+
+        .container {
+            max-width: 2200px;
+            margin: 0 auto;
+
+        }
+
+        .container h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: aliceblue;
+        }
+
+        .subtitle {
+            color: rgba(184, 184, 184, 0.8);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            width: 100px;
+            height: 200px;
+
+            /* display: grid; */
+            /**
+    otomatis mengisi kekosongan dengan minimal lebar 200px
+    **/
+            /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+           gap: 20px; */
+            margin: 20px auto;
+        }
+
+        .card {
+            margin: 20px;
+        }
+
+
+
+
+        /* //STYLING BORDERMOTION */
+        .card1 {
+            margin: 10px 30px 10px 10px;
+            border-radius: 20px;
+            border: 2px solid aliceblue;
+        }
+
+        .card1:hover {
+
+            box-shadow: 0 0 90px conic-gradient(from var(--angle), transparent 20%, red, gold, blue);
+            animation: 2s bordermotion ease-in-out infinite;
+
+        }
+
+
+
+
+
+        /* typing effect will now be controlled by JavaScript: type, pause, then delete */
+        .area-ketik {
+            display: inline-block;
+            width: 450px;
+            /* bisa kamu ubah */
+            font-size: 24px;
+            font-family: sans-serif;
+            border-right: 2px solid blue;
+            /* efek cursor */
+            padding-right: 5px;
+            white-space: nowrap;
+            /* overflow: hidden; */
+            color: aliceblue;
+            font-weight: 500;
+            font-weight: bolder;
+            text-shadow: 0 0 50px gray;
+        }
+
+        .carousel-lesson {
+            margin: 100px auto;
+            width: 90%;
+
+            display: flex;
+            overflow: hidden;
+            gap: 15px;
+        }
+
+        .carousel-lesson::-webkit-scrollbar {
+            /* display: absolute; */
+            display: none;
+        }
+
+        .group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1em;
+            animation: spin 25s infinite linear;
+            padding-right: 1em;
+            padding: 20px;
+        }
+
+        .group1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1em;
+            animation: spin1 15s infinite linear;
+            padding-right: 1em;
+            padding: 20px;
+        }
+
+        .card-img-lesson {
+            padding: 20px;
+            height: 295px;
+            width: 125px;
+            background-color: snow;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            color: black;
+            transition: transform 0.3s ease-in-out;
+            margin: 10px 20px;
+        }
+
+        .imgstud {
+            width: 75px;
+            box-sizing: border-box;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+
+
+        .judulku {
+            text-shadow: 10px 10px 50px black;
+        }
+
+        .hero-section-lesson {
+            display: flex;
+            flex-direction: column
+        }
+
+        .card2 {
+            background: #222;
+            border: 2px solid dodgerblue;
+            border-radius: 10px;
+            padding: 30px 40px;
+            max-width: 400px;
+            opacity: 0;
+            transform: translateY(-100%);
+            animation: slideIn 1s ease-out forwards;
+        }
+
+
+
+        .center {
+            padding: 20px 10px;
+            background-color: blue;
+            text-align: center;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            transition: 3s background-color ease-in-out;
+        }
+
+        .center:hover {
+
+            background: linear-gradient(70deg, rgba(0, 0, 255, 0.553), rgba(30, 143, 255, 0.484), rgba(135, 207, 235, 0.516));
+
+
+        }
+
+
+        .sosmed {
+            width: 25px;
+            height: 25px;
+            margin: 0 10px;
+            object-fit: cover;
+            box-sizing: border-box;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+
+
+
+
+
+
+
+
+        /* //STYLING SPEECH RECOGNITION */
+
+
+
+        #micBtn {
+            font-size: 80px;
+            cursor: pointer;
+            transition: 0.3s opacity ease-in-out;
+            filter: drop-shadow(0 0 10px gold);
+        }
+
+        #micBtn.active {
+            display: none;
+        }
+
+        .centerBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* ANIMASI ANGKA */
+        .counter-box {
+            text-align: center;
+            margin: 50px 20px;
+        }
+
+        .counter {
+            font-size: 4rem;
+            font-weight: bold;
+            color: gold;
+        }
+
+        .label {
+            font-size: 1.2rem;
+            margin-top: 5px;
+            color: #e5e7eb;
+        }
+
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 0%;
+            background: linear-gradient(170deg, gold, blue);
+            /* Warna seperti Figma */
+            z-index: 1000;
+            transition: width 0.1s ease-out;
+        }
+
+        .grupm {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .mediana {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px
+        }
+
+        a:hover {
+            color: black;
+            transition: 1s ease-in-out;
+        }
+
+        .mediac {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 5px;
+            padding: 10px 5px;
+            background-color: linear-gradient(to right, rgb(173, 167, 167), rgb(24, 23, 23));
+            border-radius: 20px;
+            border: 1px solid grey;
+            flex: 1;
+            transition: 1s ease-in-out;
+        }
+
+        .mediac img:hover {
+            filter: drop-shadow(1 black);
+        }
+
+        .mediac:hover {
+            background-color: yellow;
+            transition: 1s ease-in-out;
+            transform: scale(1.2);
+            color: black;
+        }
+
+        /* AREA KEYFRAMES-------------------------------------------------------------------------------------------------- */
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+
+
+        @keyframes bordermotion {
+
+
+            0% {
+                transform: rotateX(0) rotateY(0) rotateZ(0)
+            }
+
+            33% {
+                transform: rotateX(180deg) rotateY(0) rotateZ(0);
+
+            }
+
+            67% {
+                transform: rotateX(180deg) rotateY(180deg) rotateZ(0);
+            }
+
+            100% {
+                transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+            }
+        }
+
+
+        @keyframes spin {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes spin1 {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes spinnerku {
+            from {
+                rotate: 0deg;
+            }
+
+            to {
+                rotate: 360deg;
+                border: 0 2px solid yellow;
+            }
+        }
+
+        @keyframes loading {
+            0% {
+                transform: rotateX(0) rotateY(0) rotateZ(0);
+            }
+
+            33% {
+                transform: rotateX(180deg) rotateY(0) rotateZ(0);
+            }
+
+            67% {
+                transform: rotateX(180deg) rotateY(180deg) rotateZ(0);
+            }
+
+            100% {
+                transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+            }
+        }
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -48,11 +744,11 @@
         </header>
         <section class="Beranda" id="Home" style="display: flex;flex-direction: row;justify-content: space-around;">
 
-            <audio id="audio" src="/La la tahsab.m4a" loop></audio>
+            <audio id="audio" src="La la tahsab.m4a" loop></audio>
 
             <!-- MICROPHONE ICON -->
             <div class="centerBox">
-                <div id="micBtn"><img class="sound" src="/volume_945174.png" width="200px" alt=""
+                <div id="micBtn"><img class="sound" src="volume_945174.png" width="200px" alt=""
                         style="transition: 1s opacity ease ease-in-out;"></div>
                 <canvas id="canvas" style="width: 200px;
            height: 200px;
@@ -71,7 +767,7 @@
 
         <main class="main">
             <section class="hero-section reserve" id="About">
-                <img class="card1" width="170px" src="/foto idris.jpeg" alt="">
+                <img class="card1" width="170px" src="foto idris.jpeg" alt="">
                 <div class="hero-text">
                     <h1>Calon Web Developer & Tech
                         Enthusiast</h1>
@@ -84,7 +780,7 @@
             </section>
             <hr>
             <section class="hero-section" id="Biography">
-                <img class="card1" width="180px" src="/ourslogo.png" alt="">
+                <img class="card1" width="180px" src="ourslogo.png" alt="">
                 <div class="hero-text">
                     <h1>My Biography</h1>
                     <p>Halo! Saya Haidar Idris Asy-Syafiq, berasal dari sukoharjo,
@@ -102,7 +798,7 @@
             <hr>
 
             <section class="hero-section" id="Story">
-                <img class="card1" src="/wmremove-transformed.webp" alt="" width="150px">
+                <img class="card1" src="wmremove-transformed.webp" alt="" width="150px">
                 <div class="hero-text">
                     <h1>My Story</h1>
                     <p> Sejak kecil saya teringin membuat artikel dan saya selama liburan
@@ -185,47 +881,47 @@
                 <div class="carousel-lesson">
                     <div aria-hidden="true" class="group">
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/Arabic.jpg" alt="">
+                            <img class="imgstud" src="Arabic.jpg" alt="">
                             <h4 class="judulku">Arabic Languange</h4>
                             <p>We study it because that's Al-Quran Languange</p>
                         </div>
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/Figma.jpg" alt="">
+                            <img class="imgstud" src="Figma.jpg" alt="">
                             <h4 class="judulku">Designing at Figma</h4>
                             <p>Because draw skill must improve from childhood</p>
                         </div>
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/JS.jpg" alt="">
+                            <img class="imgstud" src="JS.jpg" alt="">
                             <h4 class="judulku">Javascript</h4>
                             <p>Because it's international programming languange. And this is machine from HTML CSS</p>
                         </div>
 
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/HTML.jpg" alt="">
+                            <img class="imgstud" src="HTML.jpg" alt="">
                             <h4 class="judulku">HTML</h4>
                             <p>It's your website framework and you must make it funny,after that you need CSS and
                                 Javascript
                             </p>
                         </div>
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/css.jpg" alt="">
+                            <img class="imgstud" src="css.jpg" alt="">
                             <h4 class="judulku">CSS</h4>
                             <p>You must study it because no programmer without arts. and design your html quickly
                                 beautifully.
                                 And this is art of HTML</p>
                         </div>
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/Photography.jpg" alt="">
+                            <img class="imgstud" src="Photography.jpg" alt="">
                             <h4 class="judulku">Photography</h4>
                             <p>To take yours moment and yours memory beautifully and Elegant</p>
                         </div>
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/canva2.jpg" alt="">
+                            <img class="imgstud" src="canva2.jpg" alt="">
                             <h4 class="judulku">Canva</h4>
                             <p>In canva,we can make ours design simply</p>
                         </div>
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/Capcut.jpg" alt="">
+                            <img class="imgstud" src="Capcut.jpg" alt="">
                             <h4 class="judulku">Editing video on Capcut App</h4>
                             <p>Because company need persons videos editor</p>
                         </div>
@@ -234,47 +930,47 @@
 
                     <div aria-hidden="true" class="group">
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/Arabic.jpg" alt="">
+                            <img class="imgstud" src="Arabic.jpg" alt="">
                             <h4 class="judulku">Arabic Languange</h4>
                             <p>We study it because that's Al-Quran Languange</p>
                         </div>
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/Figma.jpg" alt="">
+                            <img class="imgstud" src="Figma.jpg" alt="">
                             <h4 class="judulku">Designing at Figma</h4>
                             <p>Because draw skill must improve from childhood</p>
                         </div>
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/JS.jpg" alt="">
+                            <img class="imgstud" src="JS.jpg" alt="">
                             <h4 class="judulku">Javascript</h4>
                             <p>Because it's international programming languange. And this is machine from HTML CSS</p>
                         </div>
 
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/HTML.jpg" alt="">
+                            <img class="imgstud" src="HTML.jpg" alt="">
                             <h4 class="judulku">HTML</h4>
                             <p>It's your website framework and you must make it funny,after that you need CSS and
                                 Javascript
                             </p>
                         </div>
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/css.jpg" alt="">
+                            <img class="imgstud" src="css.jpg" alt="">
                             <h4 class="judulku">CSS</h4>
                             <p>You must study it because no programmer without arts. and design your html quickly
                                 beautifully.
                                 And this is art of HTML</p>
                         </div>
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/Photography.jpg" alt="">
+                            <img class="imgstud" src="Photography.jpg" alt="">
                             <h4 class="judulku">Photography</h4>
                             <p>To take yours moment and yours memory beautifully and Elegant</p>
                         </div>
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/canva2.jpg" alt="">
+                            <img class="imgstud" src="canva2.jpg" alt="">
                             <h4 class="judulku">Canva</h4>
                             <p>In canva,we can make ours design simply</p>
                         </div>
                         <div class="card-img-lesson">
-                            <img class="imgstud" src="/Capcut.jpg" alt="">
+                            <img class="imgstud" src="Capcut.jpg" alt="">
                             <h4 class="judulku">Editing video on Capcut App</h4>
                             <p>Because company need persons videos editor</p>
                         </div>
@@ -346,13 +1042,13 @@
         </div>
         <div class="column" style="display: flex;flex-direction: row;">
             <button class="center">
-                <a href="/index2.html" class="btn link" style="text-decoration: none;color: aliceblue;">Ke Halaman 2</a>
+                <a href="index2.html" class="btn link" style="text-decoration: none;color: aliceblue;">Ke Halaman 2</a>
             </button>
 
 
 
             <button class="center">
-                <a href="/index3.html" class="btn link" style="text-decoration: none;color: aliceblue;">Ke Halaman 3</a>
+                <a href="index3.html" class="btn link" style="text-decoration: none;color: aliceblue;">Ke Halaman 3</a>
             </button>
 
         </div>
@@ -361,7 +1057,7 @@
 
 
         <section style="display: flex;flex-direction: column;">
-            <img src="/ourslogo.png" alt="" width="220px"
+            <img src="ourslogo.png" alt="" width="220px"
                 style="border-radius: 100%;box-shadow: 2px 2px 40px aliceblue;">
             <h1>BERDIRINYA KAMI PADA</h1>
             <div class="numbera"
@@ -402,27 +1098,27 @@
                     <div class="mediana">
                         <div class="mediac">
                             <a href="https://www.instagram.com/idris_sifqa/?igsh=MW14eDdkMnMyMnV6dA%3D%3D#"
-                                target="_blank" rel="noopener noreferrer"><img
-                                    src="/instagram_4782335.png" alt="" class="sosmed">
+                                target="_blank" rel="noopener noreferrer"><img src="instagram_4782335.png" alt=""
+                                    class="sosmed">
                                 <a
                                     href="https://www.instagram.com/idris_sifqa/?igsh=MW14eDdkMnMyMnV6dA%3D%3D#">Instagram</a>
                             </a>
                         </div>
                         <div class="mediac">
                             <a href="https://www.facebook.com/profile.php?id=61568714111531" target="_blank"
-                                rel="noopener noreferrer"><img src="/fb.png" alt="" class="sosmed">
+                                rel="noopener noreferrer"><img src="fb.png" alt="" class="sosmed">
                                 <a href="https://www.facebook.com/profile.php?id=61568714111531">Facebook</a>
                             </a>
                         </div>
                         <div class="mediac">
                             <a href="mailto:punyadrs@gmail.com." target="_blank" rel="noopener noreferrer"><img
-                                    src="/gmail_270021.png" alt="" class="sosmed">
+                                    src="gmail_270021.png" alt="" class="sosmed">
                                 <a href="mailto:punyadrs@gmail.com">Ours Gmail</a>
                             </a>
                         </div>
-                                                <div class="mediac">
+                        <div class="mediac">
                             <a href="mailto:punyadrs@gmail.com." target="_blank" rel="noopener noreferrer"><img
-                                    src="/linkedin_1377213.png" alt="" class="sosmed">
+                                    src="linkedin_1377213.png" alt="" class="sosmed">
                                 <a href="https://www.linkedin.com/in/punya-idris-87715b391/">LinkedIn</a>
                             </a>
                         </div>
@@ -430,30 +1126,29 @@
                     <div class="mediana">
                         <div class="mediac">
                             <a href="https://www.tiktok.com/@sifqa3" target="_blank" rel="noopener noreferrer"><img
-                                    src="/tiktok.png" alt="" class="sosmed">
+                                    src="tiktok.png" alt="" class="sosmed">
                                 <a href="https://www.tiktok.com/@sifqa3">Tiktok</a>
                             </a>
                         </div>
                         <div class="mediana">
                             <div class="mediac">
                                 <a href="https://www.tiktok.com/@sifqa3" target="_blank" rel="noopener noreferrer"><img
-                                        src="/youtube.png" alt="" class="sosmed">
+                                        src="youtube.png" alt="" class="sosmed">
                                     <a href="https:youtube.com/channel/UCYUhdT5LK-cqbgRrZ_MTImw">Youtube</a>
                                 </a>
                             </div>
                             <div class="mediac">
                                 <a href="https://t.me/@idrissifqa" target="_blank" rel="noopener noreferrer"><img
-                                        src="/telegram.png" alt="" class="sosmed">
+                                        src="telegram.png" alt="" class="sosmed">
                                     <a href="https://t.me/@idrissifqa">Telegram</a>
                                 </a>
                             </div>
                             <div class="mediac">
                                 <a href="https://github.com/Idorisu-HIAS-dev" target="_blank"
-                                    rel="noopener noreferrer"><img src="/github_2504911.png" alt=""
-                                        class="sosmed">
+                                    rel="noopener noreferrer"><img src="github_2504911.png" alt="" class="sosmed">
                                     <a href="https://github.com/Idorisu-HIAS-dev">Github</a>
                                 </a>
-                                
+
                             </div>
 
                         </div>
@@ -472,41 +1167,40 @@
                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-<style>
-            .form-visitor {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                width: 400px;
-                margin-bottom: 20px;
-            }
+            <style>
+                .form-visitor {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    width: 400px;
+                    margin-bottom: 20px;
+                }
 
-            .form-visitor fieldset {
-                border: none;
-                display: flex;
-                flex-direction: column;
-            }
+                .form-visitor fieldset {
+                    border: none;
+                    display: flex;
+                    flex-direction: column;
+                }
 
-            .form-visitor label {
-                margin-bottom: 5px;
-                font-weight: bold;
-            }
+                .form-visitor label {
+                    margin-bottom: 5px;
+                    font-weight: bold;
+                }
 
-            .form-visitor input,
-            .form-visitor textarea,
-            .form-visitor select {
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                font-size: 16px;
-            }
+                .form-visitor input,
+                .form-visitor textarea,
+                .form-visitor select {
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    font-size: 16px;
+                }
 
-            .form-visitor textarea {
-                resize: vertical;
-                height: 100px;
-            }
-
-</style>
+                .form-visitor textarea {
+                    resize: vertical;
+                    height: 100px;
+                }
+            </style>
             <form action="/proses.php" method="post" class="form-visitor">
                 <fieldset>
                     <label for="nama">Nama</label>
@@ -533,7 +1227,8 @@
                 </fieldset>
             </form>
             <button class="center" style="margin-bottom: 30px;">
-                <a href="#" class="btn link" style="text-decoration: none;color: aliceblue;padding: 10px 20px;">Kirim Pesan</a>
+                <a href="#" class="btn link" style="text-decoration: none;color: aliceblue;padding: 10px 20px;">Kirim
+                    Pesan</a>
         </section>
         <footer style="padding: 30px;text-align: center;background-color: rgb(66, 66, 66);color: azure;">
             <p>&copy;2025 Portfolio Haidar Idris Asy-Syafiq All Reserved</p>
